@@ -1,0 +1,111 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 5%;
+    text-align: center;
+    cursor: pointer;
+    
+}
+.header div{
+    background-color: lightseagreen;
+    margin: auto;
+    overflow: auto;
+    width: 15%;
+    height: 10vh;
+    padding: 1%;
+    border: 2px solid black;
+    color: yellow;
+    transition: 1s;
+    box-shadow: 0px 0px 2px 2px black;
+}
+.header div:hover{
+    width: 18%;
+}
+
+
+.center {
+    margin: 5%;
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    cursor: pointer;
+    /* background-color: lightcoral; */
+    transition: 1s;
+    border-radius: 5%;
+}
+
+.center:hover {
+    background-color: rgba(255, 255, 0, 0.233);
+}
+
+.center div {
+  margin: 3%; 
+  background-color: rgba(0, 0, 0, 0.014);
+  width:100%;
+  /* border: 2px solid rgb(255, 80, 11); */
+  border-radius: 5%;
+  box-shadow: 2px 4px 10px 5px rgba(0, 0, 0, 0.541);
+}
+
+#first {
+    float: right;
+    color: wheat;
+    width: 15%;
+    max-height: 100%;
+    padding: 1%;
+    margin: -1% -1%;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    cursor: pointer;
+    transition: 1s;
+    border-left:  1px solid black;
+    box-shadow: 0px 0px 2px 2px black;
+}
+
+#first:hover {
+    background-color: tomato;
+}
+
+#second {
+    float: left;
+    /* background-color: rgba(255, 0, 0, 0.829); */
+    width: 82%;
+    box-shadow: 0px 0px 2px 2px black;
+    margin-top: -1%;
+    transition: 1s;
+}
+#second:hover{
+    background-color: rgba(255, 255, 0, 0.329)
+}
+
+.ele {
+    width: 100%;
+    margin: 10% 0%;
+    background-color: black;
+    transition: 1s;
+    color: rgb(255, 255, 255);
+}
+
+html, body {
+
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    height: 145%;
+    background-image: url(ss.jpg);
+}
+
+input[type="checkbox"] {
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    cursor: pointer;
+}
+
+h1{
+    color: tomato;
+}

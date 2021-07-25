@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>country cases</title>
+</head>
+<body>
+    <h1>covid 19 daily updates</h1>
+    <div id="first">
+        <div class="ele">
+            <label for="all"><input type="checkbox" onchange="sn(event);" value="select all" checked>all</label>
+        </div>
+    </div>
+    <div id="second">
+        <div class="header">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="center">
+            <div>
+                <canvas id="myPop" width="300" height="120"></canvas>
+            </div>
+        </div>
+        <div class="center">
+            <div>
+                <canvas id="myChart" width="300" height="120"></canvas>
+            </div>
+        </div>
+    </div>
+   
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="file.js"></script>
+</body>
+</html>
