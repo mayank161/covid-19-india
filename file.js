@@ -143,8 +143,7 @@ var ctx = document.getElementById('myChart').getContext('2d');
         });
 
 
-
-
+// main function start at first run
 
 india();
 async function india() {
@@ -186,6 +185,8 @@ async function india() {
     populate(statesAr,population);
     colCol();
 }
+
+// function run when all states selected or rejected
 
 function sn(e) {
     const p = e.target;
@@ -231,6 +232,8 @@ function sn(e) {
     colCol();
 }
 
+// function run when any states selected or rejected
+
 function change(e) {
   const p = e.target;
   const i = parseInt(p.value);
@@ -265,6 +268,7 @@ function change(e) {
 }
 
 
+// calling the chart in js
 
 function chart(states,recovered,confirmed) {
     states = states.filter((num) => { return num != null; })
@@ -277,7 +281,7 @@ function chart(states,recovered,confirmed) {
     myChart.update();
 }
 
-
+// calling population chart
 
 function populate(states,populates) {
     states = states.filter((num) => { return num != null; })
@@ -289,7 +293,7 @@ function populate(states,populates) {
 }
 
 
-
+// color changing effects
 
 function colCol() {
     one.style.backgroundColor = `${colors[coChange%coLength]}`
@@ -299,8 +303,9 @@ function colCol() {
     coChange++;
 }
 
-const mouseCursor = document.getElementById('cursor')
+// all event listener in the page
 
+const mouseCursor = document.getElementById('cursor')
 window.addEventListener('mousemove', cursor);
 
 function cursor(e) {
