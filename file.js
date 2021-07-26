@@ -56,9 +56,96 @@ let confirmedAr = [];
 let statesAr = [];
 let population = [];
 
-var myPop;
-var myChart;
 let m;
+
+// charts used here -------------->
+
+var ctx = document.getElementById('myPop').getContext('2d');
+        var myPop = new Chart(ctx, {
+            
+            data: {
+                labels: 0,
+                fill: true,
+                spanGaps: true,
+                datasets: [{
+                    type: 'bar',
+                    lineTension: 0.2,
+                    fill: true,
+                    spanGaps: true,
+                    label: 'population',
+                    data: 0,
+                    backgroundColor: [
+                        `${colors[coChange%coLength]}`
+                    ],
+                    borderColor: [
+                        'blue'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+//  2 chart of confirmed and recovered data
+
+var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            
+            data: {
+                labels: 0,
+                fill: true,
+                spanGaps: true,
+                datasets: [{
+                    type: 'line',
+                    lineTension: 0.2,
+                    fill: true,
+                    spanGaps: true,
+                    label: 'recovered',
+                    data: 0,
+                    backgroundColor: [
+                        'rgba(67, 241, 134, 0.219)'
+                    ],
+                    borderColor: [
+                        '#00ff00'
+                    ],
+                    borderWidth: 1
+                },
+                {
+                    type: 'line',
+                    lineTension: 0.3,
+                    spanGaps: true,
+                    fill: false,
+                    backgroundColor: 'yellow',
+                    label: 'confirmed', 
+                    data: 0,
+                    backgroundColor: [
+                      'black'
+                    ],
+                    borderColor: [
+                       'black'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+
+
+
+
 india();
 async function india() {
     const data = await axios.get('https://api.covid19india.org/v4/min/data.min.json')
@@ -96,7 +183,6 @@ async function india() {
     four.innerHTML = `population <br> ${sf}`;
 
     chart(statesAr,recovered,confirmedAr)
-
     populate(statesAr,population);
     colCol();
 }
@@ -129,8 +215,11 @@ function sn(e) {
         so=0,st=0,sth=0,sf=0;
     }
 
-    myChart.destroy();
-    myPop.destroy();
+    statesAr = statesAr.filter((num) => { return num != null; })
+    population = population.filter((num) => { return num != null; })
+    recovered = recovered.filter((num) => { return num != null; })
+    confirmedAr = confirmedAr.filter((num) => { return num != null; })
+
     chart(statesAr,recovered,confirmedAr)
     populate(statesAr,population);
 
@@ -144,27 +233,26 @@ function sn(e) {
 
 function change(e) {
   const p = e.target;
-  let s =m[p.value];
+  const i = parseInt(p.value);
+  let s =m[i];
   const conf =  s[1].total.confirmed, rec = s[1].total.recovered, pop = s[1].meta.population;
 
-  console.log(p)
+  console.log(i)
   if(!p.checked) {
-    statesAr[p.value] = null;
-    recovered[p.value] = null;
-    confirmedAr[p.value] = null;
-    population[p.value] = null;
+    statesAr[i] = null;
+    recovered[i] = null;
+    confirmedAr[i] = null;
+    population[i] = null;
     so -= 1,st -= conf,sth -= rec,sf -= pop;
   }
   else {
-    statesAr[p.value] = s[0];
-    recovered[p.value] = rec;
-    confirmedAr[p.value] = conf;
-    population[p.value] = pop;
+    statesAr[i] = s[0];
+    recovered[i] = rec;
+    confirmedAr[i] = conf;
+    population[i] = pop;
     so += 1,st += conf,sth += rec,sf += pop;
   }
-
-    myChart.destroy();
-    myPop.destroy();
+  
     chart(statesAr,recovered,confirmedAr)
     populate(statesAr,population);
 
@@ -183,99 +271,21 @@ function chart(states,recovered,confirmed) {
     recovered = recovered.filter((num) => { return num != null; })
     confirmed = confirmed.filter((num) => { return num != null; })
 
-    var ctx = document.getElementById('myChart').getContext('2d');
-         myChart = new Chart(ctx, {
-            
-            data: {
-                labels: states,
-                fill: true,
-                spanGaps: true,
-                datasets: [{
-                    type: 'line',
-                    lineTension: 0.2,
-                    fill: true,
-                    spanGaps: true,
-                    label: 'recovered',
-                    data: recovered,
-                    backgroundColor: [
-                        'rgba(67, 241, 134, 0.219)'
-                    ],
-                    borderColor: [
-                        '#00ff00'
-                    ],
-                    borderWidth: 1
-                },
-                {
-                    type: 'line',
-                    lineTension: 0.3,
-                    spanGaps: true,
-                    fill: false,
-                    backgroundColor: 'yellow',
-                    label: 'confirmed', 
-                    data: confirmed,
-                    backgroundColor: [
-                      'black'
-                    ],
-                    borderColor: [
-                       'black'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    },
-                    x: {
-                        beginAtZero: true
-                    },
-                }
-            }
-        });
-
+    myChart.data.labels = states;
+    myChart.data.datasets[0].data = recovered;
+    myChart.data.datasets[1].data = confirmed;
+    myChart.update();
 }
 
 
 
-function populate(states,population) {
+function populate(states,populates) {
     states = states.filter((num) => { return num != null; })
-    population = population.filter((num) => { return num != null; })
-    var ctx = document.getElementById('myPop').getContext('2d');
-         myPop = new Chart(ctx, {
-            
-            data: {
-                labels: states,
-                fill: true,
-                spanGaps: true,
-                datasets: [{
-                    type: 'bar',
-                    lineTension: 0.2,
-                    fill: true,
-                    spanGaps: true,
-                    label: 'population',
-                    data: population,
-                    backgroundColor: [
-                        `${colors[coChange%coLength]}`
-                    ],
-                    borderColor: [
-                        'blue'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    },
-                    x: {
-                        beginAtZero: true
-                    },
-                }
-            }
-        });
+    populates = populates.filter((num) => { return num != null; })
 
+    myPop.data.labels = states;
+    myPop.data.datasets[0].data = populates
+    myPop.update();    
 }
 
 
@@ -287,4 +297,18 @@ function colCol() {
     three.style.backgroundColor = `${colors[coChange%coLength]}`
     four.style.backgroundColor = `${colors[coChange%coLength]}`
     coChange++;
+}
+
+const mouseCursor = document.getElementById('cursor')
+
+window.addEventListener('mousemove', cursor);
+
+function cursor(e) {
+    mouseCursor.style.top = e.pageY +'px';      
+    mouseCursor.style.left = e.pageX +'px';    
+}
+
+function zoom() {
+    mouseCursor.style.boxShadow = `0 0 10px 2px ${colors[coChange%coLength]}`
+    coChange++; 
 }

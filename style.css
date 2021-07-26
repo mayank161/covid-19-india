@@ -4,8 +4,6 @@
     justify-content: space-evenly;
     margin: 5%;
     text-align: center;
-    cursor: pointer;
-    
 }
 .header div{
     background-color: lightseagreen;
@@ -17,7 +15,8 @@
     border: 2px solid black;
     color: yellow;
     transition: 1s;
-    box-shadow: 0px 0px 2px 2px black;
+    border-radius: 100%;
+    box-shadow: 2px 2px 2px 2px black;
 }
 .header div:hover{
     width: 18%;
@@ -29,21 +28,18 @@
     display: flex;
     justify-content: space-evenly;
     text-align: center;
-    cursor: pointer;
-    /* background-color: lightcoral; */
     transition: 1s;
     border-radius: 5%;
 }
 
 .center:hover {
-    background-color: rgba(255, 255, 0, 0.233);
+    background-color: rgba(255, 255, 255, 0.493);
 }
 
 .center div {
   margin: 3%; 
   background-color: rgba(0, 0, 0, 0.014);
   width:100%;
-  /* border: 2px solid rgb(255, 80, 11); */
   border-radius: 5%;
   box-shadow: 2px 4px 10px 5px rgba(0, 0, 0, 0.541);
 }
@@ -59,7 +55,6 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    cursor: pointer;
     transition: 1s;
     border-left:  1px solid black;
     box-shadow: 0px 0px 2px 2px black;
@@ -71,30 +66,32 @@
 
 #second {
     float: left;
-    /* background-color: rgba(255, 0, 0, 0.829); */
     width: 82%;
     box-shadow: 0px 0px 2px 2px black;
     margin-top: -1%;
     transition: 1s;
+    background-color: rgba(255, 255, 255, 0.534);
 }
 #second:hover{
-    background-color: rgba(255, 255, 0, 0.329)
+    background-color: wheat;
 }
 
 .ele {
     width: 100%;
     margin: 10% 0%;
-    background-color: black;
     transition: 1s;
-    color: rgb(255, 255, 255);
+    color: rgb(8, 8, 8);
+    background-image: url(main.jpg);
+    border-radius: 100%;
+    box-shadow: 2px 2px 2px 2px black;
 }
 
 html, body {
-
     text-align: center;
     font-family: Georgia, 'Times New Roman', Times, serif;
     height: 145%;
-    background-image: url(ss.jpg);
+    background-image: url(main.jpg);
+    cursor: none;
 }
 
 input[type="checkbox"] {
@@ -103,9 +100,23 @@ input[type="checkbox"] {
     height: 25px;
     width: 25px;
     background-color: #eee;
-    cursor: pointer;
+    cursor: none;
 }
+
+label { cursor: none;}
 
 h1{
     color: tomato;
+}
+
+#cursor {
+    width: 2rem;
+    height: 2rem;
+    border: 2px solid black;
+    border-radius: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    pointer-events: none;
+    box-shadow: 0 0 10px 2px aqua;
+    background-color: rgba(0, 255, 255, 0.253);
 }
