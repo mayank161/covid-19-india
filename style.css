@@ -58,6 +58,7 @@
     transition: 1s;
     border-left:  1px solid black;
     box-shadow: 0px 0px 2px 2px black;
+    border-top-left-radius: 10%;
 }
 
 #first:hover {
@@ -71,6 +72,7 @@
     margin-top: -1%;
     transition: 1s;
     background-color: rgba(255, 255, 255, 0.534);
+    border-radius: 10%;
 }
 #second:hover{
     background-color: wheat;
