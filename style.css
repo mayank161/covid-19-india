@@ -48,7 +48,7 @@
     float: right;
     color: wheat;
     width: 15%;
-    max-height: 160%;
+    max-height: 115%;
     padding: 1%;
     margin: 2% -1% 0% 0%;
     overflow: auto;
@@ -91,7 +91,7 @@
 html, body {
     text-align: center;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    height: 110%;
+    height: 130%;
     background-image: url(main.jpg);
     cursor: none;
 }
@@ -128,18 +128,27 @@ h1,h3{
 /* media quires */
 
 @media screen and (max-width: 850px) and (min-width: 700px) {
+    body {
+        height: 100%;
+    }
     #first {
         max-height: 120%;
     }
 }
 
 @media screen and (max-width: 700px) and (min-width: 450px) {
+    body {
+        height: 95%;
+    }
     #first {
-        max-height: 110%;
+        max-height: 95%;
     }
 }
 
 @media screen and (max-width: 450px) and (min-width: 200px) {
+    body {
+        height: 80%;
+    }
     #first {
         max-height: 80%;
     }
