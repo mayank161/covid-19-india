@@ -240,7 +240,6 @@ function change(e) {
   let s =m[i];
   const conf =  s[1].total.confirmed, rec = s[1].total.recovered, pop = s[1].meta.population;
 
-  console.log(i)
   if(!p.checked) {
     statesAr[i] = null;
     recovered[i] = null;
